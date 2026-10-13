@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import Chip from "@mui/material/Chip";
 import Paper from "@mui/material/Paper";
@@ -8,23 +9,21 @@ import NavigationIcon from "@mui/icons-material/Navigation";
 import Fab from "@mui/material/Fab";
 import Typography from "@mui/material/Typography";
 import Drawer from "@mui/material/Drawer";
-import MovieReviews from "../movieReviews"
-
-
+import MovieReviews from "../movieReviews";
 
 const root = {
-    display: "flex",
-    justifyContent: "center",
-    flexWrap: "wrap",
-    listStyle: "none",
-    padding: 1.5,
-    margin: 0,
+  display: "flex",
+  justifyContent: "center",
+  flexWrap: "wrap",
+  listStyle: "none",
+  padding: 1.5,
+  margin: 0,
 };
+
 const chip = { margin: 0.5 };
 
-const MovieDetails = ({ movie }) => {  // Don't miss this!
-const [drawerOpen, setDrawerOpen] = useState(false);
-
+const MovieDetails = ({ movie }) => {
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
     <>
@@ -36,10 +35,7 @@ const [drawerOpen, setDrawerOpen] = useState(false);
         {movie.overview}
       </Typography>
 
-      <Paper 
-        component="ul" 
-        sx={{...root}}
-      >
+      <Paper component="ul" sx={{...root}}>
         <li>
           <Chip label="Genres" sx={{...chip}} color="primary" />
         </li>
@@ -49,6 +45,7 @@ const [drawerOpen, setDrawerOpen] = useState(false);
           </li>
         ))}
       </Paper>
+
       <Paper component="ul" sx={{...root}}>
         <Chip icon={<AccessTimeIcon />} label={`${movie.runtime} min.`} />
         <Chip
@@ -61,10 +58,22 @@ const [drawerOpen, setDrawerOpen] = useState(false);
         />
         <Chip label={`Released: ${movie.release_date}`} />
       </Paper>
+
+      <Paper component="ul" sx={{...root}}>
+        <li>
+          <Chip label="Production Countries" sx={{...chip}} color="primary" />
+        </li>
+        {movie.production_countries.map((country) => (
+          <li key={country.iso_3166_1}>
+            <Chip label={country.name} sx={{...chip}} />
+          </li>
+        ))}
+      </Paper>
+
       <Fab
         color="secondary"
         variant="extended"
-        onClick={() =>setDrawerOpen(true)}
+        onClick={() => setDrawerOpen(true)}
         sx={{
           position: 'fixed',
           bottom: '1em',
@@ -74,11 +83,12 @@ const [drawerOpen, setDrawerOpen] = useState(false);
         <NavigationIcon />
         Reviews
       </Fab>
+
       <Drawer anchor="top" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
         <MovieReviews movie={movie} />
       </Drawer>
-
-      </>
+    </>
   );
 };
-export default MovieDetails ;
+
+export default MovieDetails;
