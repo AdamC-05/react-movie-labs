@@ -6,7 +6,6 @@ import PageTemplate from "../components/templateMoviePage";
 import { getMovie } from '../api/tmdb-api'
 import { useQuery } from '@tanstack/react-query';
 import Spinner from '../components/spinner'
-import { getMovieRecommendations } from '../api/tmdb-api';
 import MovieList from "../components/movieList";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
@@ -21,10 +20,6 @@ const MoviePage = (props) => {
     queryKey: ['movie', {id: id}],
     queryFn: getMovie,
   })
-  const { data: recommendations, error: recommendationsError, isPending: recommendationsPending,isError: recommendationsIsError } = useQuery({
-    queryKey: ['recommendations', { id: id }],
-    queryFn: getMovieRecommendations,
-  });
 
   if (isPending) {
     return <Spinner />;
