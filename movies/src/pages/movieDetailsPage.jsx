@@ -12,6 +12,7 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import AddToWatchListIcon from "../components/cardIcons/addToWatchList";
 import MovieRecommendations from "../components/movieRecommendations";
+import MovieCredits from "../components/movieCredits";
 
 
 const MoviePage = (props) => {
@@ -40,6 +41,7 @@ const MoviePage = (props) => {
         <>
           <PageTemplate movie={movie}>
             <MovieDetails movie={movie} />
+            <MovieCredits movie={movie} />
             <MovieRecommendations movie={movie} />
           </PageTemplate>
         </>
