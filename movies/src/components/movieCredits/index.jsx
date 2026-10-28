@@ -30,6 +30,12 @@ const MovieCredits = ({ movie }) => {
       <Grid container>
         {cast.slice(0, 10).map((actor) => ( // selects the first 10 entries without changing the original array
           <Grid key={actor.id} size={{xs: 12, sm: 6, md: 4}} sx={{padding: "20px"}}>
+            {actor.profile_path && (
+                <img
+                    src={`https://image.tmdb.org/t/p/w185/${actor.profile_path}`}
+                    alt={actor.name}
+                />
+            )}
             <Typography variant="h6">
               {actor.name}
             </Typography>
