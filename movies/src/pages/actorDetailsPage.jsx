@@ -6,6 +6,7 @@ import { useQuery } from '@tanstack/react-query';
 import Spinner from '../components/spinner'
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
+import ActorMovies from "../components/actorMovies";
 
 const ActorPage = (props) => {
   const { id } = useParams();
@@ -55,6 +56,9 @@ const ActorPage = (props) => {
           {actor.biography}
         </Typography>
       </Grid>
+    <Grid size={12}>
+        <ActorMovies actor={actor} />
+    </Grid>  
     </Grid>
   );
 };
