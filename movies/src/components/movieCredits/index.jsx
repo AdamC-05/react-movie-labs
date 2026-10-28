@@ -4,6 +4,7 @@ import Grid from "@mui/material/Grid";
 import { getMovieCredits } from "../../api/tmdb-api";
 import { useQuery } from "@tanstack/react-query";
 import Spinner from '../spinner'
+import { Link } from "react-router";
 
 const MovieCredits = ({ movie }) => {
   const { data, error, isPending, isError } = useQuery({
@@ -36,9 +37,11 @@ const MovieCredits = ({ movie }) => {
                     alt={actor.name}
                 />
             )}
-            <Typography variant="h6">
-              {actor.name}
-            </Typography>
+            <Link to={`/actors/${actor.id}`}>
+                <Typography variant="h6">
+                    {actor.name}
+                </Typography>
+            </Link>
             <Typography>
               Character: {actor.character}
             </Typography>
